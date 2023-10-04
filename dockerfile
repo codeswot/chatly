@@ -6,7 +6,6 @@ WORKDIR /app
 
 # Copy the application files into the working directory
 COPY . /app
-
 # Install Yarn globally
 RUN npm install -g yarn
 
