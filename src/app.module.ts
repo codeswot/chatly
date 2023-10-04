@@ -9,7 +9,9 @@ import { MongooseModule } from '@nestjs/mongoose';
   imports: [
     AuthModule,
     UsersModule,
-    MongooseModule.forRoot('mongodb://localhost:27017/test'),
+    MongooseModule.forRoot(
+      process.env.MONGO_URI || 'mongodb://localhost:27017/test',
+    ),
   ],
   controllers: [AppController],
   providers: [AppService],

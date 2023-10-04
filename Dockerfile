@@ -11,4 +11,4 @@ COPY . /src
 RUN yarn install
 
 # Define the entry point for the container
-CMD ["yarn","start:docker"]
+CMD ["yarn", "start"]
