@@ -15,6 +15,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   const port = process.env.PORT || 5005;
+  const host = '0.0.0.0';
   const config = new DocumentBuilder()
     .setTitle('Chatly')
     .setDescription('The Chatly API')
@@ -23,7 +24,7 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-  await app.listen(port);
+  await app.listen(port, host);
   console.log(`Application is running on: ${await app.getUrl()}`);
 }
 bootstrap();
