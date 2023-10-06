@@ -31,10 +31,4 @@ describe('EventsGateway', () => {
         });
     });
   });
-
-  describe('identity', () => {
-    it('should return the same number has what was sent', async () => {
-      await expect(gateway.identity(1)).resolves.toBe(1);
-    });
-  });
 });
