@@ -22,8 +22,8 @@ export class AuthService {
     if (user?.password !== password) {
       throw new UnauthorizedException('Wrong password');
     }
-
     const payload = {
+      id: user._id,
       email: user.email,
       age: user.age,
       name: user.name,
@@ -48,6 +48,7 @@ export class AuthService {
     } as UsersDto;
     const user = await this.usersService.create(userDto);
     const payload = {
+      id: user._id,
       email: user.email,
       age: user.age,
       name: user.name,

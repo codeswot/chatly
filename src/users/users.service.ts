@@ -17,10 +17,7 @@ export class UsersService {
 
   async findAll(): Promise<User[]> {
     return (await this.userModel.find().exec()).map((user) => ({
-      id: user._id,
-      email: user.email,
-      name: user.name,
-      age: user.age,
+      ...user,
       password: '****',
     }));
   }
@@ -28,10 +25,7 @@ export class UsersService {
   async findOne(id: string): Promise<User> {
     const user = await this.userModel.findOne({ _id: id }).exec();
     return {
-      id: user._id,
-      email: user.email,
-      name: user.name,
-      age: user.age,
+      ...user,
       password: '****',
     } as User;
   }
@@ -63,10 +57,7 @@ export class UsersService {
     );
 
     return {
-      id: updatedUser._id,
-      email: updatedUser.email,
-      name: updatedUser.name,
-      age: updatedUser.age,
+      ...updatedUser,
       password: '****',
     } as User;
   }
@@ -77,10 +68,7 @@ export class UsersService {
       .exec();
 
     return {
-      id: deletedUser._id,
-      email: deletedUser.email,
-      name: deletedUser.name,
-      age: deletedUser.age,
+      ...deletedUser,
       password: '****',
     } as User;
   }
