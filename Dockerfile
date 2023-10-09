@@ -8,7 +8,7 @@ EXPOSE 3000
 # Copy the application files into the working directory
 COPY . /src
 # Install the application dependencies using Yarn
-RUN yarn install
+RUN npm i
 
 # Define the entry point for the container
-CMD ["yarn", "start"]
+CMD ["npm", "start"]
