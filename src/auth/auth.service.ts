@@ -23,11 +23,10 @@ export class AuthService {
       throw new UnauthorizedException('Wrong password');
     }
     const payload = {
-      id: user._id,
+      _id: user._id,
       email: user.email,
       age: user.age,
       name: user.name,
-      password: '***',
     };
     return {
       token: await this.jwtService.signAsync(payload),
@@ -35,7 +34,7 @@ export class AuthService {
     };
   }
 
-  async signUp(email: string, password: string): Promise<object> {
+  async signUp(email: string, password: string, name: string): Promise<object> {
     const existingUser = await this.usersService.findOneByEmail(email);
     if (existingUser) {
       throw new ConflictException('User with this email already exists');
@@ -43,16 +42,15 @@ export class AuthService {
     const userDto = {
       password: password,
       email: email,
-      name: null,
+      name: name,
       age: null,
     } as UsersDto;
     const user = await this.usersService.create(userDto);
     const payload = {
-      id: user._id,
+      _id: user._id,
       email: user.email,
       age: user.age,
       name: user.name,
-      password: '***',
     };
 
     return {

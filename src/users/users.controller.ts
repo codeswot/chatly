@@ -31,7 +31,15 @@ export class UsersController {
 
   @Get()
   async findAll(): Promise<User[]> {
-    return this.usersService.findAll();
+    const users = await this.usersService.findAll();
+    return users.map((user) => {
+      return {
+        email: user.email,
+        name: user.name,
+        age: user.age,
+        _id: user._id,
+      } as User;
+    });
   }
 
   @Get(':id')

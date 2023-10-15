@@ -6,8 +6,15 @@ import { Chat } from './chats.schema';
 export class ChatsController {
   constructor(private readonly chatService: ChatsService) {}
 
-  @Get(':roomId')
-  async findAll(@Param('roomId') roomId: string): Promise<Chat[]> {
-    return this.chatService.findAllByRoomId(roomId);
+  @Get()
+  async test(): Promise<string> {
+    return 'TEST';
+  }
+  @Get(':currentUserId')
+  async findAll(
+    @Param('currentUserId') currentUserId: string,
+  ): Promise<Chat[]> {
+    const chats = await this.chatService.findAllByUserId(currentUserId);
+    return chats;
   }
 }

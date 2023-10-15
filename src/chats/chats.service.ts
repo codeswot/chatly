@@ -14,9 +14,14 @@ export class ChatsService {
     const createdChat = new this.chatModel(chatDto);
     return await createdChat.save();
   }
-  async findAllByRoomId(roomId: string): Promise<Chat[]> {
-    return await this.chatModel.find({ roomId }).exec();
+  async findAllByUserId(currentUserId: string): Promise<Chat[]> {
+    return await this.chatModel
+      .find({
+        $or: [{ fromId: currentUserId }, { toId: currentUserId }],
+      })
+      .exec();
   }
+
   async findAllByText(text: string): Promise<Chat[]> {
     return await this.chatModel.find({ text }).exec();
   }
